@@ -2,11 +2,12 @@ package com.example.taskmanagementareasystem.entity;
 
 import com.example.taskmanagementareasystem.common.TaskAreaTypeEnum;
 import jakarta.persistence.*;
-import lombok.*;
+import org.mapstruct.Builder;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
-
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,11 +15,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "task_area")
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class TaskAreaEntity extends BaseEntity {
 
     @Id
@@ -31,13 +29,13 @@ public class TaskAreaEntity extends BaseEntity {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "area_type")
-    private TaskAreaTypeEnum type;
-    /*@Column(name = "startDate")
-    private Date startDate;
-    @Column(name = "endDate")
-    private Date endDate;
-    */
+    @Column(name = "area_type", nullable = false)
+    private TaskAreaTypeEnum areaType;
+    @Column(name = "startDate", nullable = false)
+    private LocalDateTime startDate;
+    @Column(name = "endDate", nullable = false)
+    private LocalDateTime endDate;
+
     @CreatedDate
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
@@ -74,14 +72,13 @@ public class TaskAreaEntity extends BaseEntity {
         this.description = description;
     }
 
-    public TaskAreaTypeEnum getType() {
-        return type;
+    public TaskAreaTypeEnum getAreaType() {
+        return areaType;
     }
 
-    public void setType(TaskAreaTypeEnum type) {
-        this.type = type;
+    public void setAreaType(TaskAreaTypeEnum areaType) {
+        this.areaType = areaType;
     }
-
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
@@ -105,5 +102,21 @@ public class TaskAreaEntity extends BaseEntity {
 
     public void setCoordinates(List<TaskAreaCoordinateEntity> coordinates) {
         this.coordinates = coordinates;
+    }
+
+    public LocalDateTime getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDateTime startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDateTime getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDateTime endDate) {
+        this.endDate = endDate;
     }
 }

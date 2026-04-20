@@ -17,6 +17,12 @@ public class TaskAreaServiceImpl implements TaskAreaService{
 
     @Override
     public TaskAreaDto save(TaskAreaDto taskAreaDto){
+        if(taskAreaDto.getStartDate().isAfter(taskAreaDto.getEndDate())){
+            throw new RuntimeException("Bitiş tarihi başlangıç tarihinden önce olamaz!");
+        }
+        if (taskAreaDto.getCoordinates() == null && taskAreaDto.getCoordinates().size() < 3){
+            throw new RuntimeException("En az üç koordinat noktası girilmelidir!");
+        }
        return mapper.toDto(taskAreaRepository.save(mapper.toEntity(taskAreaDto)));
     }
 

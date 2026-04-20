@@ -6,7 +6,7 @@ import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {TaskAreaCoordinateMapper.class})
 public interface TaskAreaMapper extends BaseMapper<TaskAreaDto, TaskAreaEntity>{
 
     @AfterMapping

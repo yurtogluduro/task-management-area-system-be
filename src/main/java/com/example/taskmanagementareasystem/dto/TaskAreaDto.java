@@ -1,6 +1,9 @@
 package com.example.taskmanagementareasystem.dto;
 
 import com.example.taskmanagementareasystem.common.TaskAreaTypeEnum;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,12 +18,16 @@ public class TaskAreaDto extends BaseModelDto{
     public TaskAreaDto(){
         super();
     }
+    @NotBlank(message = "Görev adı boş olamaz")
     private String taskName;
     private String description;
     private List<TaskAreaCoordinateDto> coordinates;
-    private TaskAreaTypeEnum type;
-    /*private Date startDate;
-    private Date endDate;*/
+    @NotNull(message = "Alan tipi seçilmelidir")
+    private TaskAreaTypeEnum areaType;
+    @NotNull(message = "Başlangıç tarihi zorunludur")
+    private LocalDateTime startDate;
+    @NotNull(message = "Bitiş tarihi zorunludur")
+    private LocalDateTime endDate;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
@@ -48,29 +55,13 @@ public class TaskAreaDto extends BaseModelDto{
         this.coordinates = coordinates;
     }
 
-    public TaskAreaTypeEnum getType() {
-        return type;
+    public TaskAreaTypeEnum getAreaType() {
+        return areaType;
     }
 
-    public void setType(TaskAreaTypeEnum type) {
-        this.type = type;
+    public void setAreaType(TaskAreaTypeEnum areaType) {
+        this.areaType = areaType;
     }
-
-    /*public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }*/
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
@@ -86,5 +77,21 @@ public class TaskAreaDto extends BaseModelDto{
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public LocalDateTime getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDateTime startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDateTime getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDateTime endDate) {
+        this.endDate = endDate;
     }
 }

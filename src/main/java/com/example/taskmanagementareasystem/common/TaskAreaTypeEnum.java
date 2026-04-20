@@ -2,9 +2,9 @@ package com.example.taskmanagementareasystem.common;
 
 public enum TaskAreaTypeEnum {
 
-    RECONNAISSANCE("Keşif"),
+    INTELLIGENCE("İstihbarat"),
     SURVEILLANCE("Gözetleme"),
-    LOGISTICS("Lojistik"),
+    INTERVENTION("Müdahale"),
     PATROL("Devriye"),
     EMERGENCY("Acil Durum");
 
