@@ -6,13 +6,16 @@ import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 
-@Mapper(componentModel = "spring", uses = {TaskAreaCoordinateMapper.class})
+@Mapper(componentModel = "spring", uses = {TaskAreaCoordinateMapper.class, UnitMapper.class})
 public interface TaskAreaMapper extends BaseMapper<TaskAreaDto, TaskAreaEntity>{
 
     @AfterMapping
     default void linkCoordinates(@MappingTarget TaskAreaEntity taskArea) {
         if (taskArea.getCoordinates() != null) {
             taskArea.getCoordinates().forEach(coordinate -> coordinate.setTaskArea(taskArea));
+        }
+        if(taskArea.getUnits() != null){
+            taskArea.getUnits().forEach(unit -> unit.setTaskArea(taskArea));
         }
     }
 }

@@ -1,11 +1,13 @@
 package com.example.taskmanagementareasystem.service;
 
 import com.example.taskmanagementareasystem.dto.TaskAreaDto;
+import com.example.taskmanagementareasystem.entity.TaskAreaEntity;
 import com.example.taskmanagementareasystem.mapper.TaskAreaMapper;
 import com.example.taskmanagementareasystem.repository.TaskAreaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TaskAreaServiceImpl implements TaskAreaService{
@@ -31,6 +33,15 @@ public class TaskAreaServiceImpl implements TaskAreaService{
     @Override
     public List<TaskAreaDto> getAllTasks(){
         return mapper.toDtoList(taskAreaRepository.findAll());
+    }
+
+    @Override
+    public TaskAreaDto getById(Long id){
+        Optional<TaskAreaEntity> optTaskArea = taskAreaRepository.findById(id);
+        if(optTaskArea.isPresent()){
+            return mapper.toDto(optTaskArea.get());
+        }
+        throw new RuntimeException("Görev Alanı bulunamadı");
     }
 
 }

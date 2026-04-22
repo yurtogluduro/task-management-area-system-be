@@ -1,5 +1,6 @@
 package com.example.taskmanagementareasystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -28,6 +29,11 @@ public class UnitEntity extends BaseEntity{
     @OneToMany(mappedBy = "unit", cascade = CascadeType.ALL, orphanRemoval = true)
     @OrderBy("createdAt DESC")
     private List<UnitPositionEntity> unitPositions = new ArrayList<>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "task_area_id")
+    @JsonBackReference
+    private TaskAreaEntity taskArea;
 
     public Long getId() {
         return id;
@@ -67,5 +73,13 @@ public class UnitEntity extends BaseEntity{
 
     public void setUnitPositions(List<UnitPositionEntity> unitPositions) {
         this.unitPositions = unitPositions;
+    }
+
+    public TaskAreaEntity getTaskArea() {
+        return taskArea;
+    }
+
+    public void setTaskArea(TaskAreaEntity taskArea) {
+        this.taskArea = taskArea;
     }
 }

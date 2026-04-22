@@ -28,6 +28,7 @@ public class TaskAreaDto extends BaseModelDto{
     private LocalDateTime startDate;
     @NotNull(message = "Bitiş tarihi zorunludur")
     private LocalDateTime endDate;
+    private List<UnitDto> units;
 
     public String getTaskName() {
         return taskName;
@@ -75,5 +76,13 @@ public class TaskAreaDto extends BaseModelDto{
 
     public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
+    }
+
+    public List<UnitDto> getUnits() {
+        return units;
+    }
+
+    public void setUnits(List<UnitDto> units) {
+        this.units = units;
     }
 }

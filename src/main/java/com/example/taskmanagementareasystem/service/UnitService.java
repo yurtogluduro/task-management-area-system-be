@@ -8,4 +8,6 @@ public interface UnitService {
     UnitDto save(UnitDto unitDtoModel);
 
     List<UnitDto> getAllTasks();
+
+    UnitDto getById(Long id);
 }

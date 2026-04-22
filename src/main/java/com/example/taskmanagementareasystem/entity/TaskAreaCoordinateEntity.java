@@ -1,15 +1,16 @@
 package com.example.taskmanagementareasystem.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.mapstruct.Builder;
 
 @Entity
 @Table(name = "task_area_coordinate")
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class TaskAreaCoordinateEntity {
 
     @Id

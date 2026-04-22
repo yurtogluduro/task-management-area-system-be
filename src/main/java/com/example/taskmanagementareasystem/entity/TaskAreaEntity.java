@@ -1,6 +1,7 @@
 package com.example.taskmanagementareasystem.entity;
 
 import com.example.taskmanagementareasystem.common.TaskAreaTypeEnum;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.mapstruct.Builder;
 import org.springframework.data.annotation.CreatedDate;
@@ -47,6 +48,10 @@ public class TaskAreaEntity extends BaseEntity {
     @OneToMany(mappedBy = "taskArea", cascade = CascadeType.ALL, orphanRemoval = true)
     @OrderBy("orderIndex ASC")
     private List<TaskAreaCoordinateEntity> coordinates = new ArrayList<>();
+
+    @OneToMany(mappedBy = "taskArea", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<UnitEntity> units = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -118,5 +123,13 @@ public class TaskAreaEntity extends BaseEntity {
 
     public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
+    }
+
+    public List<UnitEntity> getUnits() {
+        return units;
+    }
+
+    public void setUnits(List<UnitEntity> units) {
+        this.units = units;
     }
 }

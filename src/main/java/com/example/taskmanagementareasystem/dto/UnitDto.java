@@ -16,6 +16,8 @@ public class UnitDto extends BaseModelDto{
     private String course;
     private List<UnitPositionDto> unitPositions;
 
+    private Long taskAreaId;
+
     @Override
     public Long getId() {
         return id;
@@ -56,5 +58,13 @@ public class UnitDto extends BaseModelDto{
 
     public void setUnitPositions(List<UnitPositionDto> unitPositions) {
         this.unitPositions = unitPositions;
+    }
+
+    public Long getTaskAreaId() {
+        return taskAreaId;
+    }
+
+    public void setTaskAreaId(Long taskAreaId) {
+        this.taskAreaId = taskAreaId;
     }
 }

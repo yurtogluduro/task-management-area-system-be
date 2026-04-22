@@ -8,4 +8,6 @@ public interface TaskAreaService {
     TaskAreaDto save(TaskAreaDto taskAreaDto);
 
     List<TaskAreaDto> getAllTasks();
+
+    TaskAreaDto getById(Long id);
 }

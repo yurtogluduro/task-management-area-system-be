@@ -1,11 +1,14 @@
 package com.example.taskmanagementareasystem.service;
 
+import com.example.taskmanagementareasystem.dto.TaskAreaDto;
 import com.example.taskmanagementareasystem.dto.UnitPositionDto;
+import com.example.taskmanagementareasystem.entity.TaskAreaEntity;
 import com.example.taskmanagementareasystem.mapper.UnitPositionMapper;
 import com.example.taskmanagementareasystem.repository.UnitPositionRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class UnitPositionServiceImpl implements UnitPositionService{
@@ -26,6 +29,15 @@ public class UnitPositionServiceImpl implements UnitPositionService{
             throw new RuntimeException("Birim bilgisi olmadan kayıt yapılamaz!");
         }
         return mapper.toDto(repository.save(mapper.toEntity(unitPositionDto)));
+    }
+
+    @Override
+    public TaskAreaDto getByUnitId(Long unitId){
+        Optional<TaskAreaEntity> optTaskArea = repository.findById(id);
+        if(optTaskArea.isPresent()){
+            return mapper.toDto(optTaskArea.get());
+        }
+        throw new RuntimeException("Görev Alanı bulunamadı");
     }
 
 }

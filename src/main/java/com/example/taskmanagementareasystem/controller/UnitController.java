@@ -4,6 +4,7 @@ import com.example.taskmanagementareasystem.dto.TaskAreaDto;
 import com.example.taskmanagementareasystem.dto.UnitDto;
 import com.example.taskmanagementareasystem.service.UnitService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,5 +31,11 @@ public class UnitController {
     public ResponseEntity<List<UnitDto>> getAll() {
         return ResponseEntity.ok(service.getAllTasks());
     }
+
+    @GetMapping("/getById/{id}")
+    public ResponseEntity<UnitDto> getById(@PathVariable @NotNull Long id) {
+        return ResponseEntity.ok(service.getById(id));
+    }
+
 
 }
