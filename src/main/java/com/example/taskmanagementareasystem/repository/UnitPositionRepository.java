@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface UnitPositionRepository extends JpaRepository<UnitPositionEntity, Long> {
 
-    // buraya unitId'den bulan sorgu yazılacak.
+    List<UnitPositionEntity> findByUnit_Id(Long unitId);
 }

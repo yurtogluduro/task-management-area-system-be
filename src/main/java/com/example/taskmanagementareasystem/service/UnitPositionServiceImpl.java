@@ -1,14 +1,18 @@
 package com.example.taskmanagementareasystem.service;
 
-import com.example.taskmanagementareasystem.dto.TaskAreaDto;
 import com.example.taskmanagementareasystem.dto.UnitPositionDto;
-import com.example.taskmanagementareasystem.entity.TaskAreaEntity;
+import com.example.taskmanagementareasystem.entity.UnitPositionEntity;
 import com.example.taskmanagementareasystem.mapper.UnitPositionMapper;
 import com.example.taskmanagementareasystem.repository.UnitPositionRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UnitPositionServiceImpl implements UnitPositionService{
@@ -16,6 +20,7 @@ public class UnitPositionServiceImpl implements UnitPositionService{
     private final UnitPositionRepository repository;
     private final UnitPositionMapper mapper;
 
+    private static final double EARTH_RADIUS = 6371.0;
     public UnitPositionServiceImpl(UnitPositionRepository repository, UnitPositionMapper mapper){
 
         this.repository = repository;
@@ -32,12 +37,8 @@ public class UnitPositionServiceImpl implements UnitPositionService{
     }
 
     @Override
-    public TaskAreaDto getByUnitId(Long unitId){
-        Optional<TaskAreaEntity> optTaskArea = repository.findById(id);
-        if(optTaskArea.isPresent()){
-            return mapper.toDto(optTaskArea.get());
-        }
-        throw new RuntimeException("Görev Alanı bulunamadı");
+    public List<UnitPositionDto> getByUnitId(Long unitId){
+        return mapper.toDtoList(repository.findByUnit_Id(unitId));
     }
 
 }
