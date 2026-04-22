@@ -26,7 +26,7 @@ public class UnitEntity extends BaseEntity{
     private String course;
 
     @OneToMany(mappedBy = "unit", cascade = CascadeType.ALL, orphanRemoval = true)
-    @OrderBy("createdAt ASC")
+    @OrderBy("createdAt DESC")
     private List<UnitPositionEntity> unitPositions = new ArrayList<>();
 
     public Long getId() {

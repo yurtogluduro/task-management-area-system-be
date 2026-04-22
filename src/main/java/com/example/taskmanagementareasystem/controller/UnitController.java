@@ -23,7 +23,7 @@ public class UnitController {
 
     @PostMapping("/save")
     public ResponseEntity<UnitDto> create(@RequestBody @Valid UnitDto unitDto) {
-        return new ResponseEntity<>(service.save(unitDto), HttpStatus.CREATED);
+        return new ResponseEntity<>(service.save(unitDto), HttpStatus.OK);
     }
 
     @GetMapping("/getAll")

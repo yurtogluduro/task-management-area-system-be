@@ -1,6 +1,8 @@
 package com.example.taskmanagementareasystem.dto;
 
 import jakarta.persistence.Column;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,9 +11,11 @@ import java.time.LocalDateTime;
 public class UnitPositionDto extends BaseModelDto{
 
     private Long id;
+    @NotNull
     private Double lat;
+    @NotNull
     private Double lng;
-    private Long unitId;
+    private UnitPositionDto unit;
 
     @Override
     public Long getId() {
@@ -39,11 +43,11 @@ public class UnitPositionDto extends BaseModelDto{
         this.lng = lng;
     }
 
-    public Long getUnitId() {
-        return unitId;
+    public UnitPositionDto getUnit() {
+        return unit;
     }
 
-    public void setUnitId(Long unitId) {
-        this.unitId = unitId;
+    public void setUnit(UnitPositionDto unit) {
+        this.unit = unit;
     }
 }

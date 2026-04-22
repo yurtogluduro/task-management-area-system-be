@@ -21,14 +21,14 @@ public class TaskAreaController {
         this.taskAreaService = taskAreaService;
     }
 
-    @PostMapping
+    @PostMapping("/save")
     public ResponseEntity<TaskAreaDto> create(@RequestBody @Valid TaskAreaDto taskAreaDto) {
         TaskAreaDto savedTask = taskAreaService.save(taskAreaDto);
-        return new ResponseEntity<>(savedTask, HttpStatus.CREATED);
+        return new ResponseEntity<>(savedTask, HttpStatus.OK);
     }
 
 
-    @GetMapping
+    @GetMapping("/getAll")
     public ResponseEntity<List<TaskAreaDto>> getAll() {
         return ResponseEntity.ok(taskAreaService.getAllTasks());
     }
