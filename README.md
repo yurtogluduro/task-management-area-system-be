@@ -10,7 +10,7 @@ Bu proje, Görev Bölgesi Yönetim Sistemi'nin veri yönetimini, iş mantığın
 
 ## 🛠 Teknoloji Yığını
 - **Framework:** Java Spring Boot 3.x
-- **Veritabanı:** PostgreSQL / PostGIS
+- **Veritabanı:** PostgreSQL
 - **Veri Erişimi:** Spring Data JPA (Hibernate)
 - **Araçlar:** Maven, Lombok
 
